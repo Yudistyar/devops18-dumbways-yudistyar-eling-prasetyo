@@ -1,0 +1,68 @@
+1.) IP Statis tidak terpengaruh jaringan IP Public dan IP Private. Sedangkan, IP Dinamis akan berubah-ubah jika login berulang-ulang.
+A.) Secara mendasar perbedaannya ada pada jangkauannya : 
+     ~ 	IP Public - bisa diakses oleh banyak orang melalui setiap perangkat 	yang terhubung ke internet dimanapun kapanpun. 
+     ~ 	IP Private - hanya bisa diakses oleh orang-orang tertentu yang 	perangkatnya terkoneksi didalam jaringan lokal (jadi range aksesnya 	lebih terbatas misal kurang dari 1Km). 
+B.) Secara mendasar perbedaannya ada pada durasi penetapannya : 
+     ~	IP Dynamic - memiliki durasi yang singkat karena berubah setiap kali 	perangkat diakses, dimatikan ulang, atau dikonfigurasi.
+     ~	IP Static - ditetapkan secara manual pada sebuah perangkat untuk durasi 	yang lama. 
+
+2.) Definisinya : 
+~ Secara ringkas Virtualization merupakan sebuah software virtual yang meniru fungsi perangkat keras fisik, semacam OS Linux didalam OS Windows, tujuannya untuk menjalankan beberapa mesin virtual secara bersamaan pada satu mesin fisik. 
+~ Contohnya : Untuk setup representasi virtual dari server, melakukan penyimpanan memori dan storage, mengatur security jaringan dan server agar tetap aman, atau representasi mesin fisik lainnya. Bisa dianalogikan sebuah rumah yang didalamnya ada rumah-rumahan yang didalamnya ada miniatur rumah-rumahan dengan kebijakannya masing-masing tanpa saling mempengaruhi secara real time.
+
+3.) Step membuat rancangan sebuah jaringan dengan spesifikasi sebagai berikut!
+      - CIDR Block : 192.168.1.xxx/24
+      - Subnet : 255.255.255.0
+      - Gateway : 192.168.1.1
+(Gunakan app.diagrams.net untuk membuat diagramnya, Referensi gambar sudah disertakan)
+
+1. Buka Windows PowerShell atau klik show hidden icon multipass launch, klik kanan dan pilih Start "primary".
+2. Gunakan perintah multipass sh untuk membuka koneksi shell.
+3. Kemudian muncul tampilan Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-101-generic x86_64)
+4. Ketik $ sudo apt update
+5. ketik $ sudo apt install nginx dan pilih Y
+6. ketik $ sudo vim /etc/nginx/sites-available/app
+7. - CIDR Block : 192.168.1.xxx/24
+   - Subnet : 255.255.255.0
+   - Gateway : 192.168.1.1
+8. app.diagrams.net
+
+4.) STEPNYA SETUP INSTALASI VM OS UBUNTU 20.04 VIA VMWARE 17.5.1 :
+~
+1. Siapkan aplikasi VM WARE 17.5.1 (Virtual Machine) dan file UBUNTU VERSI SERVER 20.04 BUKAN VERSI DEKSTOP (PC OS FORMAT ISO) yang istilahnya diambil dari filosofi penduduk di Afrika Selatan yang memiliki arti "humanity to others" dengan harapan, sistem operasi Ubuntu tersebut dapat menjadi konektor dan membawa manfaat antar individu di seluruh dunia.
+2. Open VMWare 17.5.1 dan Klik Create. Cari file Ubuntu Server 20.04 dengan format .ISO (yang dianjurkan 20.04 atau bisa pilih versi terbarunya 22.04) lalu pilih filenya dan klik buka.
+3. Pencet tombol WINDOWS + R (Untuk membuka CMD), lalu ketik IPCONFIG dan tekan Enter.
+4. Personalize Linux (Isi full name, user wajib lower case, pass, confirm). Misal :
+FN - FullName : yudis
+UN - UserName : yudis
+PW - Password : ootb
+CF - Confirm  : ootb
+5. Klik Next.
+6. Tentukan nama dan lokasi pembuatan VMnya sesuai kebutuhan. Klik Next.
+7. Tentukan ukuran max disk misal 10Gb (Rekomendasinya 20Gb).
+8. Lalu pilih 10Gb mau dijadikan single disk atau mau dipecah jadi beberapa bagian per disknya 1Gb. Klik Split saja dan Next.
+9. Muncul tampilan Create VM dan bisa langsung diklik Finish lalu selesai, tapi lakukan saja Custom pada tombol Customize Hardware.
+10. Klik Custom Device (sisi pojok kiri atas) bagian MEMORY/ RAM, misal jadi 1024Mb atau sama dengan 1Gb.
+11. Klik Custom Device bagian PROCESSORS, pilih setup 1 saja untuk menyesuaikan spesifikasi PC yang mungkin terbatas. Intinya kita bisa setting konfigurasi VM sesuai kebutuhan, apakah mau spesifikasi prosesor dan RAM VMnya tinggi atau rendah. Disesuaikan saja dengan kapasitas PC/ Laptop masing-masing. 
+12. Centang Virtualization Intel VT-x/EPT or AMD-V/RVI pada Virtualization Engine (menyesuaikan pada prosesor PC/ Laptop, biasanya ada keterangan jenis prosesor yang tertera di stiker bagian bawah keyboard sisi kanan atau kiri bawah laptop).
+13. Klik Custom Device bagian Network Adapter atau Ringkasnya/ Summarynya adalah NAT atau itu merupakan PC kita saat ini. Setup kolom Network Connection dari checklist NAT ke checklist Bridged: Connected directly to the physical network (karena jika dipilih NAT, maka VM akan memakai jaringan yang sama dengan jaringan di Device kita, tentu kita tidak mau demikian). Hal itu tujuannya agar VM punya IP address sendiri yang terpisah atau berbeda dengan device kita. 
+14. Klik Configure Adapters lalu sesuaikan dengan adapter jaringan internet apa yang digunakan di rumah, jadi jumlah network adapter itu tergantung pakai PC (biasanya 2 cara koneksi ke port) atau Laptop (bisa 4 cara koneksi ke port). misal pakai wifi, atau bluetooth (tethering), atau virtual adapter jaringan kabel (hotspot). Checklist salah satu adapter jaringan yang sedang dipakai saja, sisanya Unchecklist guna memfokuskan pada satu titik jaringan saja. Lalu KLIK OK.
+15. Opsional setup untuk USB Controller, Sound card, Display. Tapi penekanannya hanya pada 3 poin yakni Memory, Prosesor, NAT.
+16. Jika sudah selesai Customize. Klik Close dan kembali ke tampilan Ready to Create VM.
+17. Double check data yang sudah di custom. Jika sudah sesuai kebutuhan maka klik Finish. 
+18. Tunggu hingga proses pembuatan VMnya selesai dan muncul tampilan terminal CLI OS Ubuntu didalam Windows. Untuk aktivasi memerlukan install OSnya dulu beberapa menit setelah muncul tampilan CLI.
+19. Pastikan setelah klik Finish tidak muncul tampilan "Continue without Virtualized support?" akibat belum enabled, cara ceknya ada di BIOS dan langkahnya masuk ke BIOS itu menyesuaikan PC masing-masing. Setup virtualization enabled harus masuk BIOS dengan langkah matikan PC dulu, lalu aktifkan PC kembali dan langsung klik esc beberapa kali, switch aktivasi virtualization ke enabled. 
+20. Setelah setting dari disabled ke enabled virtualization di BIOS, maka tunggu proses instalasi VM di VMWAREnya benar-benar selesai dan langsung bisa digunakan secara efektif efisien. 
+.
+/
+(SKIP STEP KE CLI VM MULTIPASS) :
+1. Download multipass.exe untuk Windows.
+2. Install, klik agree, next, next dst sampai selesai.
+3. Restart PC.
+4. Buka Show hidden icons.
+5. Pilih multipass dan klik kanan lalu klik Open Shell.
+6. Tunggu hingga proses Retrieving image mencapai 100%.
+7. Muncul tampilan ubuntu@primary:~$ lalu ketik free.
+8. Setelah muncul datanya, ketik multipass find.
+9. Buka command prompt dan ketik multipass info ltsInstance atau multipass list.
+10. Buka window ubuntu@primary: ~ dan berikan command multipass sh.
