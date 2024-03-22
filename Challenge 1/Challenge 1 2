@@ -1,0 +1,18 @@
+Answer Challenge 1 :
+1.) Mengubah nama host di Ubuntu 22.04 Multipass :
+- Pertama, periksa nama host Anda saat ini. Untuk melakukannya gunakan perintah hostnamectl atau hostname: $ hostname ubuntu (status hostname sebelum diganti)
+- Selanjutnya, gunakan perintah hostnamectl untuk mengubah nama host sistem Ubuntu 22.04. Misalnya, akan diganti nama hostnya menjadi dumbways. 
+- $ sudo hostnamectl set-hostname dumbways
+- Selanjutnya, edit file /etc/hosts untuk perubahan dengan menjalankan perintah sudoedit /etc/hosts. Misalnya, ubah nama dari :
+127.0.0.1 localhost
+127.0.1.1 ubuntu
+menjadi,
+127.0.0.1 localhost
+127.0.1.1 dumbways
+- Terakhir, ketik perintah hostnamectl untuk mengonfirmasi perubahan nama host menjadi dumbways.
+
+
+2.) 
+- nano /etc/netplan/00-installer-config.yaml
+- 
+.
