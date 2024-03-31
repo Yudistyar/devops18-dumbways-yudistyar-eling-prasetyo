@@ -1,0 +1,100 @@
+TUGAS WEEK 1 :
+TASK 2 DAY 3 : OPERATING LINUX & SERVER.
+Syarat tugas :
+- Membuat repository di GitHub dengan nama "devops20-dumbways-<nama>"
+- Membuat folder task per harinya dengan file "README.md" (bisa dibuat per folder/directory)
+
+Task 2 :
+1. Cari perbedaan antara distro Ubuntu dan CentOS!
+2. Apa perbedaan dari CLI & GUI?
+3. Di VM masing-masing :
+- Install nginx, lalu akses melalui browser/ `curl <ip kalian>`
+- Ganti IP address kalian (bebas) lalu akses kembali nginx (`/etc/netplan`)
+4. Terangkan fungsi systemctl dan contoh commandnya (gunakan nginx)
+.
+/
+
+Jawaban :
+1.) Umumnya terdapat lima sektor perbedaan sistem operasi distribusi Linux (distro) antara Community Enterprise Operating System dan Ubuntu yang keduanya sama-sama free atau open source, sbb :
+A.) System core 
+~ CentOS : Berbasis Red Hat Enterprise Linux (RHEL).
+~ Ubuntu : Berbasis Debian (Canonical Ltd).
+
+B.) Cycle release 
+~ CentOS : Jarang dilakukan update (mengikuti siklus rilis RHEL 2-3 tahun sekali).
+~ Ubuntu : Update dilakukan setiap 6 bulan sekali.
+
+C.) Package command 
+~ CentOS : format RPM dan YUM management tool.	
+~ Ubuntu : format .deb dan APT-GET management tool.
+
+D.) Ease of use 
+~ CentOS : Expert level, sulit untuk digunakan bagi pemula.
+~ Ubuntu : User-friendly dan developer-friendly, dapat digunakan oleh pemula.
+
+E.) Software 
+~ CentOS : Software yang dimiliki tidak sebanyak OS lain, tetapi mendukung cPanel.
+~ Ubuntu : Memiliki banyak software tetapi tidak mendukung cPanel.
+************************************************************************************************************************************************************************************************************************
+
+2.) Perbedaan GUI dan CLI :
+A.) Segi Fungsi :
+~ Sistem GUI : dapat menjalankan atau mengoperasikan beberapa program seperti Word, Chrome dan program lainnya secara bersamaan karena dapat disebut multi-fungsi.
+~ CLI : dimungkinkan untuk dapat menjalankan fungsi-fungsi secara bersamaan namun lebih sulit pengoperasiannya.
+
+B.) Segi Adaptasi :
+~ GUI : pengguna dapat cepat beradaptasi karena tampilan yang menarik dan user friendly.  
+~ CLI : sangat susah karena hanya berupa teks-teks dan perintah yang rumit.
+
+C.) Segi Interaksi :
+~ GUI : pengguna dapat berinteraksi dengan beberapa perangkat komputer seperti keyboard, mouse, dan peralatan lainnya.
+~ CLI : memungkinkan pengguna dapat berinteraksi hanya menggunakan keyboard saja.
+
+D.) Segi Konektivitas :
+~ GUI : kita diberi kemudahan untuk terhubung dengan perangkat lain di satu jaringan yang sama.
+~ CLI : sendiri lebih rumit karena kita perlu menulis beberapa perintah yang memberikan izin untuk mengakses perangkat kita dan perangkat lainnya.
+
+E.) Segi Eksekusi :
+~ GUI : menyediakan elemen-elemen yang dapat kita coba secara langsung dan tentu saja lebih menarik tidak hanya teks saja. 
+~ CLI : dalam hal tampilan saja CLI hanya dapat menampilan teks-teks yang banyak dan lebih leluasa dalam mengeksplorasi beberapa program yang kita operasikan.
+************************************************************************************************************************************************************************************************************************
+ 
+3.) Step Instalasi nginx via VM Multipass dengan perintah :
+- Install nginx, lalu akses melalui browser/ `curl <ip kalian>`
+- Ganti IP address kalian (bebas) lalu akses kembali nginx (`/etc/netplan`)
+
+1. Buka Windows PowerShell atau klik show hidden icon multipass launch, klik kanan dan pilih Start "primary".
+2. Gunakan perintah multipass sh untuk membuka koneksi shell.
+3. Kemudian muncul tampilan Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-101-generic x86_64)
+4. Sekarang jalankan perintah standar untuk menginstal paket perangkat lunak nginx. (Perhatikan bahwa perintah ini dijalankan di mesin virtual Anda, jadi tidak ada perangkat lunak yang akan diinstal di mesin Anda yang sebenarnya).
+5. Ketik sudo apt update
+6. ketik sudo apt install nginx dan pilih Y
+7. ketik sudo vim /etc/nginx/sites-available/app
+8. Ganti IP address : ketik multipass network
+9. ketik multipass launch --name test1 --network name=localbr,mode=manual,mac="52:54:00:4b:ab:cd"
+10. Ketik multipass exec -n test1 -- sudo bash -c 'cat << EOF > /etc/netplan/10-custom.yaml
+11. ketik multipass exec -n test1 -- sudo netplan apply
+12. ketik multipass info test1
+13. cek ping 10.13.31.13 atau multipass exec -n test1 -- ping 10.13.31.1
+************************************************************************************************************************************************************************************************************************
+
+4.) Fungsi systemctl dan contoh commandnya (gunakan nginx) :
+~ systemctl - Untuk mengelola layanan sistem/ mengatur systemd (daemon) services yang saat ini menjadi standar linux. Sistem tersebut diterapkan sejak versi Ubuntu 15.04 keatas.
+
+~ Contoh commandnya :
+- menjalankan services : $ sudo systemctl start application.service
+- menghentikan service : $ sudo systemctl stop application.service
+- restart services : $ sudo systemctl restart application.service
+- reload services : $ sudo systemctl reload application.service
+- enabling service (mengatur apakah suatu service ingin dijalankan ketika mesin boot atau tidak) : $ sudo systemctl enable application.service
+- disabling service : $ sudo systemctl disable application.service
+- melihat status dari sebuah service : $ systemctl status application.service
+- Listing units yang sedang aktif : $ systemctl list-units
+- Jika ingin me-list semua units baik statusnya aktif atau tidak, bisa menambahkan flag --all di akhir perintah : $ systemctl list-units --all
+- Bisa juga melakukan filter dengan flag --type, misalnya jika kita ingin menampilan unit yang tipenya service : $ systemctl list-units --type=service
+- menampilkan unit file : $ systemctl cat application.service
+- Mengedit unit file (cukup menulis baris/direktif yang memang ingin kita ubah. File ini biasanya akan terletak di /etc/systemd/system. Pada contoh ini kita mengedit nginx service, maka direktori akan tercipta di /etc/systemd/system/nginx.service.d/) : $ sudo systemctl edit nginx.service
+- Jika menginginkan untuk mengedit file unit secara keseluruhan (file unit yang telah diubah akan disimpan di /etc/systemd/system) : $ sudo systemctl edit --full nginx.service
+- menghilangkan unit file yang telah dimodifikasi atau custom atau overrided : $ sudo rm -r /etc/systemd/system/application.service.d
+- Menghapus full unit file : $ sudo rm /etc/systemd/system/application.service
+- Setelah menghapus, jangan lupa reload kembali dengan  : $ sudo systemctl daemon-reload
