@@ -1,0 +1,73 @@
+Jawaban :
+TASK 1 DAY 6-7 :
+1. 
+Buka terminal multipass ubuntu
+ketik multipass sh
+ketik mkdir 'hulk1' 'hulk2' 'hulk3'
+cd 'hulk1' enter
+touch 'rawr1' 'rawr2'
+cd
+cd 'hulk2' enter
+touch 'rawr1' 'rawr2'
+cd
+cd 'hulk3' enter
+touch 'rawr1' 'rawr2'
+cd
+************************************************************************************************************************************************************************************************************************ 
+
+2. Text manipulation adalah sebuah cara untuk memanipulasi suatu perintah dengan agar bisa lebih efektif dan efisien.
+-1. grep : untuk mencari serangkaian karakter atau pola yang dikenal sebagai ekspresi reguler dalam file atau teks. 
+Misalnya, untuk mencari kata "root" di file /etc/passwd:
+grep root /etc/passwd
+grep "string1|string2" file (cari multiple strings dari sebuah file)
+-2. awk : gunanya untuk pemindaian baris demi baris dan membandingkan baris dengan pola.
+awk '{action}' filename
+awk '{pattern; action}' filename 
+awk '{print $1}' awk_examples.txt
+-3. sort : menampilkan konten file teks yang ditentukan dalam format yang diurutkan. 
+awk '{print $1}' awk_examples.txt | sort > sort_text.txt
+cat sort_text.txt
+-4. sed : editor aliran mengambil input sebagai aliran karakter dan melakukan pemfilteran dan transformasi teks (hapus, ganti, dan ganti) pada teks yang ditentukan.
+sed 's/string/substitution/option' file
+-5. cut : untuk memotong teks berdasarkan bidang, karakter, atau posisi byte tertentu dan menyalurkan hasilnya ke output standar.
+cut <options> file
+cut -b 1 cut_examples.txt
+************************************************************************************************************************************************************************************************************************
+
+3. Htop : merupakan perintah untuk memonitoring proses yang sedang berjalan pada sistem melalui terminal linux. Sama seperti perintah Top, Htop  berfungsi untuk memantau penggunaan memori, total swap yang digunakan, total CPU yang sedang berjalan, memantau aplikasi apa saja yang sedang berjalan, dan seberapa lama komputer sudah berjalan. 
+CPU, Memory, Swap, Tasks, Load Average, Uptime, PID User root,  Command.
+Ps (Process Status) : adalah Perintah pada linux untuk mengetahui tentang daftar proses bersama dengan informasi lain seperti PID. Berikut keterangan pada output perintah ps :
+-PID: Process ID
+-TTY: Tempat dimana sebuah perintah dijalankan.
+-Time: Waktu yang digunakan CPU untuk menjalankan sebuah perintah.
+-CMD: Berisi perintah yang dijalankan.
+************************************************************************************************************************************************************************************************************************
+
+4. 
+#!/bin/bash 
+# Update package index 
+sudo apt update 
+# Install a package 
+sudo apt install nginx
+
+touch 'sampel.sh'
+nano
+ketik : sampel.sh
+paste isi teks : 
+#!/bin/bash 
+# Update package index 
+sudo apt update 
+# Install a package 
+sudo apt install nginx
+save Yes
+ls 'sample.sh'
+chmod +x sampel.sh
+
+#!/bin/bash 
+# Update package index 
+sudo apt update 
+# Install a package 
+sudo apt install nginx
+
+bash 'sampel.sh'
+ctrl+C
